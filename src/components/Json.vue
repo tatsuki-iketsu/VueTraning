@@ -17,10 +17,11 @@ export default {
     return {
       age: 45, //リアクティブ
       learnGroup:{
-        question1:{
+        question:[{
           question:"common.cssをインポートする記述は？",
           answer:"@import url(common.css);",
           input:"",        }
+        ]
       }
     }
   }
@@ -30,11 +31,13 @@ export default {
 <template>
   <div>
     <h1>Input!!!!!!</h1>
+  </div>
+  <div v-for="learn in learnGroup.question">
     <div>
-    問題:{{learnGroup.question1.question}}
+      {{learn.question}}
     </div>
     <div>
-    回答:{{learnGroup.question1.answer}}
+      {{learn.answer}}
     </div>
   </div>
 </template>
