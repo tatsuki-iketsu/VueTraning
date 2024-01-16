@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 export default {
   name: 'Home',
   setup() {
@@ -15,15 +15,27 @@ export default {
   },
   data() {
     return {
-      // age: 45 //リアクティブ
+      age: 45, //リアクティブ
+      learnGroup:{
+        question1:{
+          question:"common.cssをインポートする記述は？",
+          answer:"@import url(common.css);",
+          input:"",        }
+      }
     }
   }
 }
-</script> -->
+</script>
 
 <template>
   <div>
     <h1>Input!!!!!!</h1>
+    <div>
+    問題:{{learnGroup.question1.question}}
+    </div>
+    <div>
+    回答:{{learnGroup.question1.answer}}
+    </div>
   </div>
 </template>
 
