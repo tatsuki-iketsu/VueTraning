@@ -6,13 +6,14 @@ export default {
     let name = '山田' 
     let age = 50
 
-    const handleClick = () => {
-      console.log('Clicked');
+    const clickAnswer = (a) => {
+      alert(`Clicked:${a}`);
     }
 
     // return { name: name, age: age} //左がtemplate、右がsetupで宣言した変数
-    return { name, age, handleClick} //上のように同じ場合はこのように省略できる
+    return { name, age, clickAnswer} //上のように同じ場合はこのように省略できる
   },
+
   data() {
     return {
       age: 45, //リアクティブ
@@ -26,9 +27,10 @@ export default {
       }
     }
   }
-}
-</script>
 
+}
+
+</script>
 <template>
   <div v-for="(learn,i) in learnGroup.question">
     <div class="question">
@@ -39,11 +41,14 @@ export default {
       {{learn.choices[1]}}
       {{learn.choices[2]}}
     </div> -->
+    
     <div v-for="(choice,i) in learn.choices" class="answer">
-      {{i+1}}：{{choice}}
+      <input type="radio"  id={{choice}} :value="choice" />
+      {{i+1}}：<label>{{choice}}</label>
     </div>
+    <button @click="clickAnswer(`{{learn}}`)">回答を見る</button>
+</div>
 
-  </div>
 </template>
 
 <style>
