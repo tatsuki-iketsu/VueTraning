@@ -4,7 +4,7 @@ import Json from '../components/Json.vue'
 
 <template>
   <div class="about">
-    <h1>Input</h1>
+    <h1>CSS問題</h1>
         <Json />
   </div>
 </template>
@@ -13,7 +13,6 @@ import Json from '../components/Json.vue'
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
-    display: flex;
     align-items: center;
   }
 }

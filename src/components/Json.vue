@@ -18,7 +18,8 @@ export default {
       age: 45, //リアクティブ
       learnGroup:{
         question:[{
-          question:"common.cssをインポートする記述は？",
+          question:"CSSで同じフォルダ内にある\ncommon.cssファイルをインポートする際の\n正しい記述を選択してください。",
+          choices:["@import url(common.css);","import{common.css} ;","import.common.css);","import-url(common.css);",],
           answer:"@import url(common.css);",
           input:"",        }
         ]
@@ -29,16 +30,19 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h1>Input!!!!!!</h1>
-  </div>
-  <div v-for="learn in learnGroup.question">
-    <div>
-      {{learn.question}}
+  <div v-for="(learn,i) in learnGroup.question">
+    <div class="question">
+     <h2>問題{{i+1}}</h2><p>{{learn.question}}</p>
     </div>
-    <div>
-      {{learn.answer}}
+    <!-- <div>
+      {{learn.choices[0]}}
+      {{learn.choices[1]}}
+      {{learn.choices[2]}}
+    </div> -->
+    <div v-for="(choice,i) in learn.choices" class="answer">
+      {{i+1}}：{{choice}}
     </div>
+
   </div>
 </template>
 
@@ -46,8 +50,11 @@ export default {
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
-    display: flex;
     align-items: center;
   }
+.question{
+  white-space: pre-wrap	
 }
+}
+
 </style>
