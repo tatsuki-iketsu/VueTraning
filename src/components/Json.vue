@@ -6,13 +6,21 @@ export default {
     let name = '山田' 
     let age = 50
 
-    const clickAnswer = (a) => {
+    const clickAnswer = (event,a) => {
+//      alert(`Clicked:${a}`);
+
       alert(`Clicked:${a}`);
+      // this.learnGroup.question[0].dispAnswer =`a`;
+      
+      // dispAnswer = `a`;
+      
     }
+    
 
     // return { name: name, age: age} //左がtemplate、右がsetupで宣言した変数
     return { name, age, clickAnswer} //上のように同じ場合はこのように省略できる
   },
+
 
   data() {
     return {
@@ -20,15 +28,34 @@ export default {
       learnGroup:{
         question:[{
           question:"CSSで同じフォルダ内にある\ncommon.cssファイルをインポートする際の\n正しい記述を選択してください。",
-          choices:["@import url(common.css);","import{common.css} ;","import.common.css);","import-url(common.css);",],
+          selectAnswers:["@import url(common.css);","import{common.css} ;","import.common.css);","import-url(common.css);",],
           answer:"@import url(common.css);",
+          dispAnswer:"ここに回答がでる",
           input:"",        }
         ]
       }
     }
-  }
+  },
+  methods: {
+    clickAnswerB(event,a) {
+      alert(`Clicked:${a}`);
+
+      this.learnGroup.question[0].dispAnswer =this.learnGroup.question[0].answer;
+},
+//         const clickAnswer = (event,a) => {
+// //      alert(`Clicked:${a}`);
+
+//       alert(`Clicked:${a}`);
+//       // this.learnGroup.question[0].dispAnswer =`a`;
+      
+//       // dispAnswer = `a`;
+      
+//     }
+    }
 
 }
+
+// 案：ラジオボタンクリックでquestionに回答を代入するメソッド、最後に答え合わせ
 
 </script>
 <template>
@@ -41,12 +68,14 @@ export default {
       {{learn.choices[1]}}
       {{learn.choices[2]}}
     </div> -->
-    
-    <div v-for="(choice,i) in learn.choices" class="answer">
-      <input type="radio"  id={{choice}} :value="choice" />
-      {{i+1}}：<label>{{choice}}</label>
+    <div>
+    <p v-for="(selectAnswers,i) in learn.selectAnswers" class="answer">
+      <label><input type="radio" id={{selectAnswers}} :value="selectAnswers" name="1"/>
+      {{i+1}}：{{selectAnswers}}</label>
+    </p>
+    <button @click="clickAnswerB($event,i+1)">回答を見る</button>
+    {{learn.dispAnswer}}
     </div>
-    <button @click="clickAnswer(`{{learn}}`)">回答を見る</button>
 </div>
 
 </template>
